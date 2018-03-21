@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- link bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <!-- link to fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Questrial" rel="stylesheet">
+
+
+    <!-- link to jquery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- link to firebase -->
+    <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
+
+    <!-- link to javascript file -->
+    <script type="text/javascript" src="app.js"></script>
+
+    <!-- link to supplementary CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <title>Train Scheduler</title>
+</head>
+
+<body>
+    <!-- page heading  -->
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container text-center text-light">
+            <h1 class="display-4 ">Train sched</h1>
+            <p class="lead">the trains are coming </p>
+        </div>
+    </div>
+
+    <!-- current schedule table-->
+    <div class="container" id="content">
+        <div class="card">
+            <div class="card-header">
+                Current Trains
+            </div>
+            <div class="card-body">
+                <table class="table table-hover table-sm">
+                    <thead>
+                        <tr>
+                            <th scope="col">Train</th>
+                            <th scope="col">Destination</th>
+                            <th scope="col">Frequency</th>
+                            <th scope="col">Next Train Arrives in ...
+                            </th>
+                            <th scope="col">at...(time)</th>
+                        </tr>
+                    </thead>
+                    <tbody id ="trainData">
+                    
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <br>
+
+        <!-- add train form -->
+        <div class="card">
+            <div class="card-header">
+                Add a New Train
+            </div>
+            <div class="card-body">
+
+                <form>
+                    <div class="form-group">
+                        <label for="nameInput">Train Name</label>
+                        <input type="text" class="form-control" id="trainName" placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label for="roleInput">Destination</label>
+                        <input type="text" class="form-control" id="destination" placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label for="startInput">Frequency</label>
+                        <input type="text" class="form-control" id="frequency" placeholder="(in minutes)">
+                    </div>
+                    <div class="form-group">
+                        <label for="rateInput">Time of First Train (military)</label>
+                        <input type="text" class="form-control" id="trainTime" placeholder="HH:mm">
+                    </div>
+                    <button type="submit" id="submitBtn" class="btn btn-secondary">Submit</button>
+                </form>
+            </div>
+        </div>
+
+
+
+
+
+
+    </div>
+    <!--closes content container-->
+    <!-- bootstrap links-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
