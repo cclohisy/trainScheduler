@@ -10,20 +10,15 @@
         crossorigin="anonymous">
     <!-- link to fonts -->
     <link href="https://fonts.googleapis.com/css?family=Questrial" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css?family=Passion+One" rel="stylesheet">    
     <!-- Added Moment JS -->
     <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
-
-
     <!-- link to jquery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
     <!-- link to firebase -->
     <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
-
     <!-- link to javascript file -->
     <script type="text/javascript" src="app.js"></script>
-
     <!-- link to supplementary CSS -->
     <link rel="stylesheet" href="style.css">
 
@@ -34,15 +29,15 @@
     <!-- page heading  -->
     <div class="jumbotron jumbotron-fluid">
         <div class="container text-center text-light">
-            <h1 class="display-4 ">Train sched</h1>
-            <p class="lead">the trains are coming </p>
+            <h1 class="display-4 ">TRAIN TIME</h1>
+            <p class="lead">They are coming... </p>
         </div>
     </div>
 
     <!-- current schedule table-->
     <div class="container" id="content">
         <div class="card">
-            <div class="card-header">
+            <div class="card-header text-light">
                 Current Trains
             </div>
             <div class="card-body">
@@ -52,9 +47,9 @@
                             <th scope="col">Train</th>
                             <th scope="col">Destination</th>
                             <th scope="col">Frequency</th>
-                            <th scope="col">Next Train Arrives in ...
+                            <th scope="col">Next Train Arrives in
                             </th>
-                            <th scope="col">at...(time)</th>
+                            <th scope="col">at</th>
                             <th scope="col">Delete Me</th>
                         </tr>
                     </thead>
@@ -69,7 +64,7 @@
 
         <!-- add train form -->
         <div class="card">
-            <div class="card-header">
+            <div class="card-header text-light">
                 Add a New Train
             </div>
             <div class="card-body">
@@ -88,10 +83,10 @@
                         <input type="text" class="form-control" id="frequency" placeholder="(in minutes)">
                     </div>
                     <div class="form-group">
-                        <label for="rateInput">Time of First Train (military)</label>
+                        <label for="rateInput">Time of First Train (military time)</label>
                         <input type="text" class="form-control" id="trainTime" placeholder="HH:mm">
                     </div>
-                    <button type="submit" id="submitBtn" class="btn btn-secondary">Submit</button>
+                    <button type="submit" id="submitBtn" class="btn text-light">Submit</button>
                 </form>
             </div>
         </div>

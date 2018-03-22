@@ -11,7 +11,6 @@ $(document).ready(function () {
   firebase.initializeApp(config);
 
   //set database variable
-
   var database = firebase.database()
 
   //set initial variables needed
@@ -20,35 +19,22 @@ $(document).ready(function () {
   var trainTime = 0
   var frequency = 0
 
-  //set variable to keep track of row entry number
-  var rowNum = 0
-
+  //set variable to keep track of row entry number- used for delete function 
+  var rowCount = 0
 
   //set element/vaules to store in firebase?
-
   var trainRef = database.ref("/trains")
   var newTrainRef = trainRef.push()
-
-  //set var to store math/ train time data
-  //calculate next train arrival time and minutes... needs to be based on current time in current timezone? 
-  //store in variable
-  //get current time
-
 
   //write function for submit button click
   $("#submitBtn").on("click", function () {
     //stop button from actually trying to submit
     event.preventDefault()
-    //increase rowNum var
-    rowNum++
 
     //grab values from user input and store in variable to be pushed to firebase
     trainName = $("#trainName").val()
-
     destination = $("#destination").val()
-
     trainTime = $("#trainTime").val()
-
     frequency = $("#frequency").val()
 
     //clear input boxes 
@@ -56,9 +42,6 @@ $(document).ready(function () {
     $("#destination").val("")
     $("#trainTime").val("")
     $("#frequency").val("")
-
-    // Alert user train was added succesfully?
-    // alert("");
 
     //create child:values and store data in firebase? 
     newTrainRef.set({
@@ -72,50 +55,45 @@ $(document).ready(function () {
 
   database.ref().on("value", function (snapshot) {
     $("#trainData").empty()
-    //increase rowNum var
-    // rowNum++
+    //store snapshot in variable
     var trains = snapshot.val().trains;
     for (key in trains) {
+      //increase rowCount var
+      rowCount++
       //add new train input to fire base and display "snapshot value "in table
       //store info you want in firebase in variable
       trainName = trains[key].trainName
       destination = trains[key].destination
       trainTime = trains[key].trainTime
       frequency = trains[key].frequency
-      console.log("name " + trainName)
-      console.log("start time " + trainTime)
 
-      // //convert trainTime 
-      // var trainTimeconv = moment(trainTime, "HH:mm");
-      // console.log((trainTimeconv).format("HH:mm"))
-
+      //moment js time stuff
+      //store current time in variable
       var currentTime = moment();
-      console.log("CURRENT TIME: " + currentTime.format("HH:mm"));
 
       // // Difference between the times
       var diffTime = moment().diff(moment(trainTime, "HH:mm"), "minutes");
-      console.log("DIFFERENCE IN TIME: " + diffTime);
 
+      //calculate remainer to determine minutes
       var remainder = Math.abs(diffTime) % parseInt(frequency);
 
-
+      //calculate minutes untill next train 
       var minNextTrain = parseInt(frequency) - remainder
-      console.log("MINUTES TILL TRAIN: " + minNextTrain);
 
+      //caluclate the time next train arrives 
       var timeNextTrain = moment(currentTime, "HH:mm").add(minNextTrain, "minutes").format("HH:mm");
-      //.add(minNextTrain, "minutes").format("HH:mm")
-
-
+      
       //create new tr in table for each set of train data 
-      //create new td for each item
+      var newEntry = $("<tr>")
+      //give id to be used in delete function 
+      newEntry.attr("id", "entry"+ rowCount)
+      newEntry.addClass("text-center")
+      //append tr to table in html
+      $("#trainData").append(newEntry)
+
+      //create new column for each item
       //display snapshot var in each td 
       //append td to tr
-      //append tr to table in html
-
-      var newEntry = $("<tr>")
-      newEntry.addClass("entry")
-      newEntry.attr("id", "entryNum" + rowNum);
-      $("#trainData").append(newEntry)
 
       // train name column
       var trainTd = $("<td>")
@@ -127,14 +105,14 @@ $(document).ready(function () {
       destinationTd.text(destination)
       newEntry.append(destinationTd)
 
-      // start time column- not displayed just shown
+      // start time column- not displayed just store the data
 
       //frequency  column -
       var frequencyTd = $("<td>")
-      frequencyTd.text(frequency)
+      frequencyTd.text("Every " +frequency+ " mins")
       newEntry.append(frequencyTd)
 
-      //arrival minutes
+      //arrival minutes column
       var minutesTd = $("<td>")
       minutesTd.text(minNextTrain + " mins")
       newEntry.append(minutesTd)
@@ -144,12 +122,15 @@ $(document).ready(function () {
       timeTd.text(timeNextTrain)
       newEntry.append(timeTd)
 
-      //add remove button to each row 
+      //create remove button store in var
       var removeBtn = $("<button>")
+      //create column to hold remove button
       var btnTd = $("<td>")
-      removeBtn.addClass("btn btn-dark text-light pt-0 pb-0 remove")
-      removeBtn.attr("id", "remove")
+      //style button
+      removeBtn.addClass("btn text-light pt-0 pb-0 remove")
       removeBtn.text("x")
+      //add attribute to be used for delete function 
+      removeBtn.attr("rowNumber", rowCount);
       btnTd.append(removeBtn)
       newEntry.append(btnTd)
 
@@ -157,11 +138,10 @@ $(document).ready(function () {
 
   })//closes display function 
 
-  //remove train on button click function 
+  //remove train row on button click  
   $(".table").on("click", ".remove", function () {
-    console.log("delete me")
-    $(".entry").remove()
-
+    var rowNum = $(this).attr("rowNumber")
+    $("#entry" + rowNum).remove()
   });
 
 })//closes document ready 

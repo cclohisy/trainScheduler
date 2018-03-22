@@ -1,8 +1,38 @@
 .jumbotron{
     background-color: rgba(1, 19, 15, 0.74);
+    border-style: groove;
+    border-color: rgba(42, 63, 52, 0.671);
+    border-width:1em;
+    font-family: 'Passion One', cursive;
+
 }
 
 body{
     font-family: 'Questrial', sans-serif;
+    background-color: rgb(231, 231, 231);
 
+}
+
+.card-header{
+    background-color: rgba(1, 19, 15, 0.74);
+}
+
+.card-body{
+border: none}
+
+.table thead th{
+    border-color: rgba(1, 19, 15, 0.74);
+}
+
+.table td{
+    border-color: rgba(1, 19, 15, 0.74);
+
+}
+
+#submitBtn{
+    background-color: rgba(1, 19, 15, 0.74);
+}
+
+.remove{
+    background-color: rgba(250, 96, 96, 0.979);
 }
