@@ -17,3 +17,6 @@ All you need is a web browser!
 * Bootstrap
 * HTML
 * CSS
+
+### Author
+Cecilia Clohisy 
